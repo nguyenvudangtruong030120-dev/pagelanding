@@ -1,0 +1,6 @@
+{
+  "name": "Hành Trình Yêu Xa",
+  "description": "Cổng thông tin cuộc thi viết câu chuyện yêu xa của Lotus Consulting",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

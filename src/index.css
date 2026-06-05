@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  
+  --color-brand-bg: #070d0e;
+  --color-brand-cyan: #00fbfb;
+  --color-brand-teal: #05aeae;
+  --color-brand-surface: rgba(255, 255, 255, 0.05);
+  --color-brand-muted: #a6cacad9;
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 10, 10, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .glass-panel:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 251, 251, 0.45);
+    box-shadow: 0 20px 48px -10px rgba(0, 251, 251, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .neon-aura {
+    box-shadow: 0 0 30px rgba(0, 251, 251, 0.3);
+  }
+
+  .neon-aura-strong {
+    box-shadow: 0 0 45px rgba(0, 251, 251, 0.5);
+  }
+  
+  .glow-text {
+    text-shadow: none;
+  }
+  
+  .glow-text-subtle {
+    text-shadow: none;
+  }
+
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(0, 251, 251, 0.025) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 251, 251, 0.025) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+}
+
+/* Liquid glass animated background elements */
+@keyframes liquid-drift-one {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(4%, 6%) scale(1.1) rotate(120deg);
+  }
+  66% {
+    transform: translate(-3%, -5%) scale(0.9) rotate(240deg);
+  }
+}
+
+@keyframes liquid-drift-two {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-5%, 8%) scale(1.15) rotate(-180deg);
+  }
+}
+
+.animate-liquid-one {
+  animation: liquid-drift-one 25s infinite alternate ease-in-out;
+}
+
+.animate-liquid-two {
+  animation: liquid-drift-two 30s infinite alternate ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060b0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 251, 251, 0.25);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 251, 251, 0.55);
+}
+
