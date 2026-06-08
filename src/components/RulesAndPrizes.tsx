@@ -20,6 +20,7 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
       <header className="text-center mb-12 sm:mb-16 mt-0 -mt-4 sm:-mt-6">
         <motion.p 
           className="font-sans text-[10px] sm:text-xs text-brand-cyan tracking-[0.25em] uppercase mb-2 font-semibold"
+          style={{ marginLeft: "0px", height: "32px" }}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -28,6 +29,7 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
         </motion.p>
         <motion.h1 
           className="font-sans text-3xl sm:text-4xl md:text-5xl text-white glow-text mb-0 font-bold tracking-tight uppercase"
+          style={{ height: "19px" }}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -91,7 +93,6 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
                 </div>
                 
                 <div className="text-left my-4">
-                  <div className="text-xs text-white/50 line-through tracking-wider block -mb-1">Giá trị ~350.000.000 VNĐ</div>
                   <div className="flex items-baseline text-white">
                     <span className="font-sans text-4xl sm:text-5xl font-black text-brand-cyan">TRỌN GÓI</span>
                   </div>
@@ -128,9 +129,9 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
                 
                 <div className="text-left my-4">
                   <div className="flex items-baseline text-white">
-                    <span className="font-sans text-4xl font-black text-brand-cyan">20</span>
-                    <span className="font-sans text-base font-bold ml-0.5 text-brand-cyan">.000.000</span>
-                    <span className="font-sans text-xs font-semibold ml-1.5 text-brand-cyan">VNĐ</span>
+                    <span className="font-sans text-5xl font-black text-white">20</span>
+                    <span className="font-sans text-2xl font-bold ml-0.5 text-white">.000.000</span>
+                    <span className="font-sans text-xs font-semibold ml-1.5 text-white">VNĐ</span>
                   </div>
                   <p className="text-[10px] text-brand-cyan uppercase tracking-widest font-sans font-black mt-1">Tiền mặt</p>
                 </div>
@@ -165,9 +166,9 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
                 
                 <div className="text-left my-4">
                   <div className="flex items-baseline text-white">
-                    <span className="font-sans text-4xl font-black">10</span>
-                    <span className="font-sans text-base font-bold ml-0.5 text-brand-cyan">.000.000</span>
-                    <span className="font-sans text-xs font-semibold ml-1.5 text-brand-muted">VNĐ</span>
+                    <span className="font-sans text-5xl font-black text-white">10</span>
+                    <span className="font-sans text-2xl font-bold ml-0.5 text-white">.000.000</span>
+                    <span className="font-sans text-xs font-semibold ml-1.5 text-white">VNĐ</span>
                   </div>
                   <p className="text-[10px] text-brand-muted uppercase tracking-widest font-sans font-semibold mt-1">Mỗi hạng mục đạt giải</p>
                 </div>
@@ -202,9 +203,9 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
                 
                 <div className="text-left my-4">
                   <div className="flex items-baseline text-white">
-                    <span className="font-sans text-4xl font-black">5</span>
-                    <span className="font-sans text-base font-bold ml-0.5 text-brand-cyan">.000.000</span>
-                    <span className="font-sans text-xs font-semibold ml-1.5 text-brand-muted">VNĐ</span>
+                    <span className="font-sans text-5xl font-black text-white">5</span>
+                    <span className="font-sans text-2xl font-bold ml-0.5 text-white">.000.000</span>
+                    <span className="font-sans text-xs font-semibold ml-1.5 text-white">VNĐ</span>
                   </div>
                   <p className="text-[10px] text-brand-muted uppercase tracking-widest font-sans font-semibold mt-1">Tiền mặt</p>
                 </div>
@@ -240,9 +241,9 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
                 
                 <div className="text-left my-4">
                   <div className="flex items-baseline text-white">
-                    <span className="font-sans text-4xl font-black">10</span>
-                    <span className="font-sans text-base font-bold ml-0.5 text-brand-cyan">.000.000</span>
-                    <span className="font-sans text-xs font-semibold ml-1.5 text-brand-muted">VNĐ</span>
+                    <span className="font-sans text-5xl font-black text-white">10</span>
+                    <span className="font-sans text-2xl font-bold ml-0.5 text-white">.000.000</span>
+                    <span className="font-sans text-xs font-semibold ml-1.5 text-white">VNĐ</span>
                   </div>
                   <p className="text-[10px] text-brand-muted uppercase tracking-widest font-sans font-semibold mt-1">Tiền mặt</p>
                 </div>
@@ -490,7 +491,7 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
           <div className="inline-flex w-12 h-12 rounded-full bg-brand-cyan/10 items-center justify-center border border-brand-cyan/20 mb-4">
             <Lock className="text-brand-cyan w-6 h-6" />
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl text-white font-bold">Điều khoản &amp; Chính sách</h2>
+          <h2 className="font-display text-3xl sm:text-4xl text-white font-bold" style={{ fontFamily: "Arial" }}>Điều khoản &amp; Chính sách</h2>
           <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-brand-cyan to-transparent mx-auto mt-6"></div>
         </motion.div>
 
@@ -506,7 +507,7 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <Gavel className="text-brand-cyan w-5 h-5" />
-                <h3 className="font-display text-xl text-white font-bold">Điều khoản &amp; Quy tắc</h3>
+                <h3 className="font-display text-xl text-white font-bold" style={{ fontFamily: "Arial" }}>Điều khoản &amp; Quy tắc</h3>
               </div>
               <ul className="space-y-4 font-sans text-sm text-brand-muted">
                 <li className="flex items-start gap-2">
@@ -536,7 +537,7 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <Lock className="text-brand-cyan w-5 h-5" />
-                <h3 className="font-display text-xl text-white font-bold">Bảo mật thông tin</h3>
+                <h3 className="font-display text-xl text-white font-bold" style={{ fontFamily: "Arial" }}>Bảo mật thông tin</h3>
               </div>
               <p className="font-sans text-sm text-brand-muted leading-relaxed">
                 Thông tin cá nhân của bạn sẽ được LOTUS CONSULTING cam kết bảo mật tuyệt đối và chỉ sử dụng cho mục đích liên hệ, xác thực giải thưởng cũng như xử lý thủ tục trong khuôn khổ cuộc thi.
@@ -555,7 +556,7 @@ export default function RulesAndPrizes({ onNavigate }: RulesAndPrizesProps) {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <ShieldAlert className="text-brand-cyan w-5 h-5" />
-                <h3 className="font-display text-xl text-white font-bold">Chính sách chung</h3>
+                <h3 className="font-display text-xl text-white font-bold" style={{ fontFamily: "Arial" }}>Chính sách chung</h3>
               </div>
               <p className="font-sans text-sm text-brand-muted leading-relaxed">
                 Giải thưởng không có giá trị quy đổi thành tiền mặt đối với voucher dịch vụ. Người thắng cuộc chịu trách nhiệm về các khoản thuế thu nhập cá nhân theo quy định của pháp luật.

@@ -318,6 +318,175 @@ export default function Home({ stories, onLike, likedStories, onNavigate }: Home
         </motion.div>
       </section>
 
+      {/* Interactive Stories Board */}
+      <section className="mb-20 sm:mb-32">
+        <div className="text-center mb-12">
+          <span className="text-brand-cyan font-sans text-xs tracking-[0.2em] uppercase font-semibold">
+            BẢNG VÀNG DANH VỌNG
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl text-white font-bold mt-2">
+            Câu chuyện từ hai nửa bán cầu
+          </h2>
+          <div className="h-[2px] w-16 bg-gradient-to-r from-transparent via-brand-cyan to-transparent mx-auto mt-4"></div>
+        </div>
+
+        {/* Search & Filter Controls Panel */}
+        <div className="glass-panel rounded-3xl p-6 sm:p-8 mb-10 flex flex-col md:flex-row gap-6 justify-between items-center border border-white/5 bg-[#0a1012]/85 backdrop-blur-xl">
+          {/* Search Input Box */}
+          <div className="relative w-full md:max-w-md">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-muted w-5 h-5" />
+            <input 
+              type="text" 
+              placeholder="Tìm kiếm câu chuyện, tác giả..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-white/[0.03] hover:bg-white/[0.05] focus:bg-white/[0.08] focus:border-brand-cyan/60 border border-white/10 text-white pl-12 pr-4 py-3.5 rounded-2xl font-sans text-sm outline-none transition-all duration-300 placeholder:text-brand-muted/70"
+            />
+          </div>
+
+          {/* Categories Filters & Sort Selector */}
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 w-full md:w-auto">
+            {/* Category Buttons */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2.5 rounded-xl font-sans text-xs font-bold transition-all duration-300 cursor-pointer ${
+                    selectedCategory === cat 
+                      ? "bg-brand-cyan text-brand-bg shadow-[0_0_15px_rgba(0,251,251,0.35)]" 
+                      : "bg-white/[0.03] hover:bg-white/[0.07] text-brand-muted hover:text-white border border-white/5"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Sort Toggle */}
+            <div className="flex bg-white/[0.03] border border-white/5 rounded-xl p-1 gap-1">
+              <button
+                onClick={() => setSortBy("likes")}
+                className={`px-3 py-1.5 rounded-lg font-sans text-[11px] font-bold transition-all duration-300 cursor-pointer ${
+                  sortBy === "likes" 
+                    ? "bg-white/[0.08] text-white" 
+                    : "text-brand-muted hover:text-white"
+                }`}
+              >
+                Yêu thích
+              </button>
+              <button
+                onClick={() => setSortBy("newest")}
+                className={`px-3 py-1.5 rounded-lg font-sans text-[11px] font-bold transition-all duration-300 cursor-pointer ${
+                  sortBy === "newest" 
+                    ? "bg-white/[0.08] text-white" 
+                    : "text-brand-muted hover:text-white"
+                }`}
+              >
+                Mới nhất
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Story Cards Grid */}
+        {sortedStories.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <AnimatePresence mode="popLayout">
+              {sortedStories.map((story) => {
+                const isLiked = likedStories.includes(story.id);
+                return (
+                  <motion.div
+                    key={story.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 30 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                    whileHover={{ y: -8, scale: 1.015 }}
+                    className="glass-panel rounded-3xl overflow-hidden border border-white/5 bg-[#0a0f10]/80 backdrop-blur-2xl flex flex-col justify-between group cursor-pointer h-full"
+                    onClick={() => setViewingStory(story)}
+                  >
+                    <div>
+                      {/* Cover Photo */}
+                      <div className="relative h-56 overflow-hidden">
+                        <img 
+                          src={story.image} 
+                          alt={story.title} 
+                          className="w-full h-full object-cover group-hover:scale-110 duration-700 ease-out"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#030607]/80 via-transparent to-transparent"></div>
+                        
+                        {/* Tags & ID */}
+                        <div className="absolute top-4 left-4 flex gap-2">
+                          <span className="bg-[#030607]/85 backdrop-blur-md text-brand-cyan border border-brand-cyan/25 text-[10px] sm:text-xs font-bold font-sans px-3 py-1 rounded-xl">
+                            {story.category}
+                          </span>
+                        </div>
+                        <div className="absolute top-4 right-4">
+                          <span className="bg-white/10 backdrop-blur-md text-white/80 border border-white/10 text-[10px] font-mono px-2.5 py-1 rounded-lg">
+                            #{story.id.replace("story-", "")}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Card Meta Content */}
+                      <div className="p-6 sm:p-7 space-y-4">
+                        <div className="flex items-center gap-2 text-xs text-brand-muted font-sans">
+                          <span className="font-bold text-white/90">{story.fullName}</span>
+                          <span>•</span>
+                          <span>{new Date(story.createdAt).toLocaleDateString("vi-VN")}</span>
+                        </div>
+
+                        <h3 className="font-display font-bold text-xl text-white group-hover:text-brand-cyan transition-colors line-clamp-2 leading-snug">
+                          {story.title}
+                        </h3>
+
+                        <p className="font-sans text-xs sm:text-sm text-brand-muted/90 leading-relaxed line-clamp-3">
+                          {story.content}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Footer Actions */}
+                    <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-4 border-t border-white/5 flex items-center justify-between gap-4 mt-auto">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onLike(story.id);
+                        }}
+                        className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold font-sans border transition-all cursor-pointer ${
+                          isLiked 
+                            ? "bg-red-500/15 text-red-400 border-red-500/30" 
+                            : "bg-white/[0.03] hover:bg-white/[0.08] text-brand-muted hover:text-white border-transparent"
+                        }`}
+                      >
+                        <Heart className={`w-4 h-4 ${isLiked ? "fill-red-400 text-red-0" : ""}`} />
+                        <span>{story.likesCount} Thích</span>
+                      </button>
+
+                      <div className="flex items-center gap-1 text-xs font-bold text-brand-cyan group-hover:underline">
+                        <span>Đọc câu chuyện</span>
+                        <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        ) : (
+          <div className="glass-panel rounded-3xl p-16 text-center border border-white/5 bg-[#0a0f10]/80 backdrop-blur-2xl">
+            <BookOpen className="w-12 h-12 text-brand-muted/50 mx-auto mb-4" />
+            <h3 className="text-white font-sans text-lg font-bold">Không tìm thấy câu chuyện nào</h3>
+            <p className="text-brand-muted text-sm mt-2 max-w-md mx-auto">
+              Không có kết quả khớp với bộ lọc hoặc từ khóa tìm kiếm của bạn. Hãy thử thay đổi nội dung tìm kiếm khác nhé!
+            </p>
+          </div>
+        )}
+      </section>
+
       {/* Về Chúng Tôi & Core Info Section */}
       <section className="py-12 border-y border-white/5 bg-[#151922]/40 rounded-3xl p-6 sm:p-10 mb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
